@@ -9,8 +9,10 @@
 namespace App\Controller;
 
 use App\Document\Project ;
+use App\Service\RedisManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+//use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class HomeController extends Controller
 {
@@ -37,11 +39,20 @@ class HomeController extends Controller
      */
     public function showProjectInformations($id)
     {
-        $test = $this->
-        $project = $this->container->get('doctrine_mongodb')->getRepository(Project::class)->findOneById($id);
+        $project = $this->container->get('doctrine_mongodb')->getRepository(Project::class)->findOneById(2);
         if (!$project) {
             throw $this->createNotFoundException('No product found');
         }
         return new Response('Product with ID : '.$project->getId().' is found');
+    }
+
+    /**
+     *
+     */
+    public function redisConnection()
+    {
+        $redisManger = $this->get(RedisManager::class);
+
+        return new Response('success');
     }
 }

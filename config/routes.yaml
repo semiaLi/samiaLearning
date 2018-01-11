@@ -6,3 +6,6 @@ connection:
     controller: App\Controller\HomeController::showProjectInformations
 #    requirements:
 #        id: '\d+'
+redisConnection:
+    path: /redis
+    controller: App\Controller\HomeController::redisConnection
